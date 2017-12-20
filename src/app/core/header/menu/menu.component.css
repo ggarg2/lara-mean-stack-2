@@ -1,0 +1,11 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  .menu-item{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+  }
+  .active-menu-item{
+    color: orange;
+  }

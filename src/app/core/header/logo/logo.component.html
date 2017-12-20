@@ -1,0 +1,9 @@
+<span *ngIf="!logoData.logoImgPath">
+    {{logoData.logoName}}
+</span>
+
+<span *ngIf="logoData.logoImgPath">
+    <img class="{{logoData.class}}" src="{{logoData.logoImgPath}}" width="{{logoData.width}}">
+</span>
+
+

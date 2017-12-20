@@ -1,0 +1,23 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened="true">
+      <mat-list role="list">
+          <mat-list-item role="listitem">
+            <a matLine class="menu-item" routerLinkActive="active-menu-item" routerLink="course">Course</a>            
+          </mat-list-item>
+          <mat-list-item role="listitem">
+
+              <a matLine class="menu-item" routerLinkActive="active-menu-item" routerLink="user-registration">User Registration</a>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+              <a matLine class="menu-item" routerLinkActive="active-menu-item" routerLink="current-batch">Current Batch</a>
+          </mat-list-item>
+      </mat-list>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    Hello Content
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

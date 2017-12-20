@@ -1,0 +1,40 @@
+.mat-drawer-container{
+    height: 500px;
+}
+
+.mat-sidenav{
+    width: 256px;
+}
+
+.menu-item{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+  }
+  .active-menu-item{
+    color: orange;
+  }
+  .mat-line{
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin: 0;
+    padding: 0;
+    border-color: rgba(0,0,0,.06);
+    /* color: rgba(0,0,0,.54); */
+  }
+
+  .mat-line-block{
+    /* padding-top: 20px; */
+    height: 160px !important;
+  }
+  a{
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 47px;
+    text-decoration: none;
+    transition: all .3s;
+    padding: 0 16px;
+    position: relative;
+  }
