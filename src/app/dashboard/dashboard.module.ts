@@ -10,6 +10,7 @@ import { CurrentBatchModule } from './current-batch/current-batch.module';
 import {MatListModule} from '@angular/material/list';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { CurrentBatchComponent } from './current-batch/current-batch.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
 
 const routes: Routes = [
 
@@ -35,7 +36,7 @@ const routes: Routes = [
     CurrentBatchModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DashboardHeaderComponent],
   exports: [DashboardComponent]
 })
 export class DashboardModule { }

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  headerName: string = 'Mean Stack Dashboard';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  setHeader(value){
+    this.headerName = value;
   }
 
 }
