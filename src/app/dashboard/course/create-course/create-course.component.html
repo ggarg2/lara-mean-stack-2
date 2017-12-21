@@ -1,4 +1,10 @@
+
+<button class="create-room-fab-button" mat-fab color="warn" (click)="openForm()">
+  <mat-icon>add</mat-icon>
+</button>  
+
 <div class="course-container">
+
   <mat-form-field>
     <input matInput placeholder="Id" [(ngModel)]="course.id">
   </mat-form-field>
@@ -9,10 +15,10 @@
     <input matInput placeholder="Faculty" [(ngModel)]="course.faculty">
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput placeholder="Description" [(ngModel)]="course.description"></textarea>
+    <input matInput placeholder="Duration" [(ngModel)]="course.duration">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Duration" [(ngModel)]="course.duration">
+    <textarea matInput placeholder="Description" [(ngModel)]="course.description"></textarea>
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="onCreate()">Create Course</button>

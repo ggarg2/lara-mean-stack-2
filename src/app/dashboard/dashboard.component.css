@@ -1,5 +1,9 @@
+.example-container{
+  margin-top: 4%;
+}
+
 .mat-drawer-container{
-    height: 500px;
+    min-height: 500px;
 }
 
 .mat-sidenav{

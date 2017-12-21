@@ -9,6 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
 import { CourseService } from './course.service';
 
 
@@ -20,7 +21,8 @@ import { CourseService } from './course.service';
     MatButtonModule,
     FormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
   ],
   declarations: [CourseComponent, CreateCourseComponent, DisplayCoursesComponent],
   exports: [CourseComponent],
