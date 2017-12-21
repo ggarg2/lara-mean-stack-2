@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../course.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { CourseModel } from '../course.model';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-display-courses',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayCoursesComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns = ['id', 'name', 'faculty', 'duration'];
+  dataSource = new MatTableDataSource<CourseModel>([]);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private courseService: CourseService) {
+    this.dataSource = new MatTableDataSource<CourseModel>(courseService.getAllCourse());
+
+    this.courseService.newItemAddedEvent.subscribe(
+      data => {
+        if(data){
+          this.getAllCourse();
+        }
+      }
+    )
+  }
 
   ngOnInit() {
+  }
+
+  getAllCourse(){
+    let coursesList = this.courseService.getAllCourse();
+    this.dataSource = new MatTableDataSource<CourseModel>(coursesList);
   }
 
 }

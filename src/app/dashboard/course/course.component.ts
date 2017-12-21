@@ -8,16 +8,9 @@ import { CourseModel } from './course.model';
 })
 export class CourseComponent implements OnInit {
 
-  courseList: CourseModel[] = [];  
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onCreate(value){
-    this.courseList.push(value);
-    console.log(this.courseList);
   }
 
 }

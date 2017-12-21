@@ -1,3 +1,4 @@
+import { CourseService } from '../course.service';
 import { CourseModel } from '../course.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -10,16 +11,14 @@ export class CreateCourseComponent implements OnInit {
 
   course: CourseModel = new CourseModel();
 
-  @Output("createCourseEvent") createCourseEvent: EventEmitter<CourseModel> 
-                                                                      = new EventEmitter();
-
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
   }
 
   onCreate(){
-    this.createCourseEvent.emit(this.course);
+    this.courseService.createCourse(this.course);
+    this.courseService.newItemAddedEvent.emit(true);
     this.course = new CourseModel();
   }
 

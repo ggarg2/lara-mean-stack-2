@@ -7,6 +7,9 @@ import { DisplayCoursesComponent } from './display-courses/display-courses.compo
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { CourseService } from './course.service';
 
 
 @NgModule({
@@ -15,9 +18,12 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [CourseComponent, CreateCourseComponent, DisplayCoursesComponent],
-  exports: [CourseComponent]
+  exports: [CourseComponent],
+  providers: [CourseService]
 })
 export class CourseModule { }
