@@ -1,19 +1,21 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { CourseModel } from "./course.model";
+import { LoggingService } from './logging.service';
 
+@Injectable()
 export class CourseService {
 
   courseList: CourseModel[] = [];
   
   newItemAddedEvent: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {
+  constructor(private loggingService: LoggingService) {
 
    }
 
   createCourse(course){
-    console.log("new Course object is ")
-    console.log(course)
+    this.loggingService.log("new Course object is ")
+    this.loggingService.log(course)
     this.courseList.push(course)
     //this.newItemAddedEvent.emit(true)
   }

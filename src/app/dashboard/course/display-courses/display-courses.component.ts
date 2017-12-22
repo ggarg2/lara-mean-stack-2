@@ -17,7 +17,7 @@ export class DisplayCoursesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private courseService: CourseService) {
-    this.dataSource = new MatTableDataSource<CourseModel>(courseService.getAllCourse());
+    //this.dataSource = new MatTableDataSource<CourseModel>(courseService.getAllCourse());
 
     this.courseService.newItemAddedEvent.subscribe(
       data => {
@@ -32,8 +32,7 @@ export class DisplayCoursesComponent implements OnInit {
   }
 
   getAllCourse(){
-    let coursesList = this.courseService.getAllCourse();
-    this.dataSource = new MatTableDataSource<CourseModel>(coursesList);
+    this.dataSource = new MatTableDataSource<CourseModel>(this.courseService.getAllCourse());
   }
 
 }

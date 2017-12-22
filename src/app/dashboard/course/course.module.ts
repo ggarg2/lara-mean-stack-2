@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { CourseService } from './course.service';
+import { LoggingService } from './logging.service';
 
 
 @NgModule({
@@ -26,6 +27,6 @@ import { CourseService } from './course.service';
   ],
   declarations: [CourseComponent, CreateCourseComponent, DisplayCoursesComponent],
   exports: [CourseComponent],
-  providers: [CourseService]
+  providers: [CourseService, LoggingService]
 })
 export class CourseModule { }
