@@ -11,7 +11,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class DisplayCoursesComponent implements OnInit {
 
-  displayedColumns = ['id', 'name', 'faculty', 'duration'];
+  displayedColumns = ['id', 'name', 'faculty', 'duration', 'operation'];
   dataSource = new MatTableDataSource<CourseModel>([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,6 +33,14 @@ export class DisplayCoursesComponent implements OnInit {
 
   getAllCourse(){
     this.dataSource = new MatTableDataSource<CourseModel>(this.courseService.getAllCourse());
+  }
+
+  viewCourse(element){
+    this.courseService.viewCourseEvent.emit(element)
+  }
+
+  editCourse(element){
+    this.courseService.editCourseEvent.emit(element)    
   }
 
 }

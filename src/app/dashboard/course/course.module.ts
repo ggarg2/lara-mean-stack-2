@@ -1,3 +1,4 @@
+import { UtilModule } from '../../util/util.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,7 +24,9 @@ import { LoggingService } from './logging.service';
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    UtilModule
   ],
   declarations: [CourseComponent, CreateCourseComponent, DisplayCoursesComponent],
   exports: [CourseComponent],

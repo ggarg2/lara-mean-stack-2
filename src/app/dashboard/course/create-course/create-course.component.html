@@ -1,25 +1,27 @@
-
-<button class="create-room-fab-button" mat-fab color="warn" (click)="openForm()">
+<app-alert-box></app-alert-box>
+<button class="create-room-fab-button" mat-fab color="warn" (click)="toggleForm()">
   <mat-icon>add</mat-icon>
 </button>  
 
-<div class="course-container">
+<div class="course-container"  *ngIf="showForm">
 
-  <mat-form-field>
-    <input matInput placeholder="Id" [(ngModel)]="course.id">
+  <mat-form-field> 
+    <input matInput placeholder="Id"  [disabled]="isView" [(ngModel)]="course.id">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="course.name">
+    <input matInput placeholder="Name" [disabled]="isView" [(ngModel)]="course.name">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Faculty" [(ngModel)]="course.faculty">
+    <input matInput placeholder="Faculty" [disabled]="isView" [(ngModel)]="course.faculty">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Duration" [(ngModel)]="course.duration">
+    <input matInput placeholder="Duration" [disabled]="isView" [(ngModel)]="course.duration">
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput placeholder="Description" [(ngModel)]="course.description"></textarea>
+    <textarea matInput placeholder="Description" [disabled]="isView" [(ngModel)]="course.description"></textarea>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" (click)="onCreate()">Create Course</button>
+  <button *ngIf="!isView && !isEdit" mat-raised-button color="primary" (click)="onCreate()">Create Course</button>
+  <button *ngIf="isEdit" mat-raised-button color="primary" (click)="onEdit()">Edit Course</button>
+  <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
 </div>

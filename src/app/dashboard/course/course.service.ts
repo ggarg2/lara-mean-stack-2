@@ -9,8 +9,11 @@ export class CourseService {
   
   newItemAddedEvent: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private loggingService: LoggingService) {
+  viewCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
+  editCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
 
+  constructor(private loggingService: LoggingService) {
+    
    }
 
   createCourse(course){
