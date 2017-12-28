@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Observer, Subscription } from 'rxjs/Rx';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
@@ -8,76 +9,35 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  numberSubscripion: Subscription;
-
-  constructor() { }
+  constructor(private activatedRoutes: ActivatedRoute) { }
 
   ngOnInit() {
 
-    const myNumberObservable = Observable.interval(1000);
+    let cityId = this.activatedRoutes.snapshot.params['cityId'];
+    console.log("city id is "+cityId);
+    let localityId = this.activatedRoutes.snapshot.params['localityId'];
+    console.log("locality id is "+localityId)
 
-    const myObservable: Observable<string> = Observable.create(
-      (observer: Observer<string>)=>{
+    let name = this.activatedRoutes.snapshot.queryParams['name'];
+    console.log("name is "+name);
 
-        setTimeout(() => {
-          observer.next("1st Next Event 2000")
-        }, 2000);
-
-        setTimeout(() => {
-          observer.next("2nd Next Event 1000")
-        }, 1000);
-
-        setTimeout(() => {
-          observer.error("1st Error Event 5000")
-        }, 5000);
-
-        setTimeout(() => {
-          observer.complete()
-        }, 7000);
-
-        setTimeout(() => {
-          observer.next("3rd Next Event 8000")
-        }, 8000);
-
-    })
-
-
-    myObservable.subscribe(
-      data=> {
-        console.log("Data Handler "+data)
-      },
-      error=> {
-        console.log("Error Handler "+error)
-      },
-      ()=> {
-        console.log("It is completed")
+    this.activatedRoutes.params.subscribe(
+      (params: Params)=>{
+        console.log(params)
       }
     )
 
-
-
-    console.log("before subscriber")
-
-   this.numberSubscripion = myNumberObservable.subscribe(
-      data => {
-        console.log(data)
-      },
-      error => {
-        console.log(error)
-      },
-      ()=> {console.log("observable is done")}
-
+    this.activatedRoutes.queryParams.subscribe(
+      (params: Params)=>{
+        console.log(params)
+      }
     )
-
-    console.log("after subscriber")
-
-    // alert("server is over loaded...please wait for sometime");
 
   }
 
 
     public ngOnDestroy(): void {
        console.log("destroy the component");
-       this.numberSubscripion.unsubscribe();
+      
     }
 }

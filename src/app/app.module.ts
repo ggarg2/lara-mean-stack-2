@@ -1,3 +1,4 @@
+import { ResourceNotFoundComponent } from './resource-not-found/resource-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
@@ -9,30 +10,28 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { CourseModule } from './dashboard/course/course.module';
-import { HomeModule } from './home/home.module';
-import { ContactUsModule } from './contact-us/contact-us.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
-  { path:'home', component: HomeComponent},
-  { path:'contact-us', component: ContactUsComponent},
- // { path:'dashboard', component: DashboardComponent}
+  { path:'home/:cityId/locality/:localityId', loadChildren: 'app/home/home.module#HomeModule'},
+  { path:'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'},
+  { path:'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'},
+  { path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    DashboardModule,
-    RouterModule.forRoot(routes),
-    HomeModule,
-    ContactUsModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { RouterModule, Routes } from '@angular/router';
 import { UtilModule } from '../../util/util.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -14,10 +15,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { CourseService } from './course.service';
 import { LoggingService } from './logging.service';
 
+const routes: Routes = [
+  { path: '', component: CourseComponent}
+]
+
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild(routes),
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -29,7 +35,7 @@ import { LoggingService } from './logging.service';
     UtilModule
   ],
   declarations: [CourseComponent, CreateCourseComponent, DisplayCoursesComponent],
-  exports: [CourseComponent],
+  exports: [RouterModule],
   providers: [CourseService, LoggingService]
 })
 export class CourseModule { }

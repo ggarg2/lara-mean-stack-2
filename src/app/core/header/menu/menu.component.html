@@ -1,5 +1,5 @@
 <span *ngFor="let menu of items" class="example-icon">
-    <a class="menu-item" routerLink="{{menu.url}}" 
+    <a class="menu-item" [routerLink]="[menu.url]" 
         routerLinkActive="active-menu-item"
     >
         {{menu.displayName}} 
