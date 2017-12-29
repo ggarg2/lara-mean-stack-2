@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiKey: "-----production url ------",
+  authDomain: "----- production ----domain"
 };
