@@ -56,13 +56,18 @@ export class CreateCourseComponent implements OnInit {
 
   onCreate(){
     this.loggingService.log("Inside on create method");
-    this.courseService.createCourse(this.course);
-    this.loggingService.log("After Create");
-    this.courseService.newItemAddedEvent.emit(true);
-    this.loggingService.log("After emit");    
-    this.course = new CourseModel();
-    this.loggingService.log("Reset variable");
-    this.alertBox.onSuccess("Course is created Successfully", "Done")
+    this.courseService.createCourse(this.course).subscribe(
+      data => {
+        console.log("Course is created successfully")
+        this.courseService.newItemAddedEvent.emit(true);
+        this.course = new CourseModel();
+        this.alertBox.onSuccess("Course is created Successfully", "Done")
+      },  
+      error => {
+        this.alertBox.onError("Error while creating course", "Error")
+      }
+    );
+
   }
 
   onUpdate(){

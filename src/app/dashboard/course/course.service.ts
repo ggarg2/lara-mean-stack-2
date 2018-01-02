@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Rx';
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { CourseModel } from "./course.model";
 import { LoggingService } from './logging.service';
@@ -12,14 +14,14 @@ export class CourseService {
   viewCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
   editCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
 
-  constructor(private loggingService: LoggingService) {
+  constructor(private loggingService: LoggingService, private httpClient: HttpClient) {
     
    }
 
-  createCourse(course){
+  createCourse(course) : Observable<any>{
     this.loggingService.log("new Course object is ")
     this.loggingService.log(course)
-    this.courseList.push(course)
+    return this.httpClient.post("https://my-proj12.firebaseio.com/courses.json", course);
     //this.newItemAddedEvent.emit(true)
   }
 
@@ -27,8 +29,8 @@ export class CourseService {
 
   }
 
-  getAllCourse(){
-    return this.courseList;
+  getAllCourse(): Observable<any>{
+    return this.httpClient.get("https://my-proj12.firebaseio.com/courses.json");
   }
 
 }

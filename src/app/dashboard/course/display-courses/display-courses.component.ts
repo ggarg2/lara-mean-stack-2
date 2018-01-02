@@ -29,10 +29,20 @@ export class DisplayCoursesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllCourse()
   }
 
   getAllCourse(){
-    this.dataSource = new MatTableDataSource<CourseModel>(this.courseService.getAllCourse());
+    //this.dataSource = new MatTableDataSource<CourseModel>(this.courseService.getAllCourse());
+  
+    this.courseService.getAllCourse().subscribe(
+      data =>{
+        console.log(data)
+        //this.dataSource = new MatTableDataSource<CourseModel>(data);
+      }, error =>{
+
+      }
+    );
   }
 
   viewCourse(element){
