@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
     url: '/contact-us'
   },
   {
-    displayName: 'Signin',
-    url: '/signin'
+    displayName: 'Sign-in',
+    url: '/login'
   },
   {
-    displayName: 'Signup',
+    displayName: 'Sign-up',
     url: '/signup'
   },
   {

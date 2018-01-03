@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { CourseModule } from './dashboard/course/course.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path:'home/:cityId/locality/:localityId', loadChildren: 'app/home/home.module#HomeModule'},
   { path:'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'},
   { path:'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'},
+  { path:'login', loadChildren: 'app/login/login.module#LoginModule'},
+  { path:'signup', loadChildren: 'app/signup/signup.module#SignupModule'},
   { path: '**', component: PageNotFoundComponent}
 ]
 
@@ -35,7 +38,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

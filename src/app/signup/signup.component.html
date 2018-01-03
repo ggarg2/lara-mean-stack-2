@@ -1,0 +1,13 @@
+<div class="body-content">
+
+  <div class="signup-form">
+    <mat-form-field>
+      <input matInput placeholder="Email Id" [(ngModel)]="emailId">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" [(ngModel)]="password">
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" type="submit" (click)="registerUserUsingObservable()">Submit</button>
+  </div>
+</div>
