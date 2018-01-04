@@ -1,15 +1,16 @@
-<span *ngFor="let menu of items" class="example-icon">
-    <a class="menu-item" [routerLink]="[menu.url]" 
-        routerLinkActive="active-menu-item"
-    >
-        {{menu.displayName}} 
-    </a>
-</span>
-<span>
-<a class="menu-item" [routerLink]="['home', 'Bhopal', 'locality', 'MG Road']" 
-[queryParams]="{name: 'Test2'}"
-routerLinkActive="active-menu-item"
->
-Test URL
-</a>
-</span>
+<ng-template ngFor let-menu [ngForOf]="items" let-i="index">
+    <span *ngIf="menu.isVisible && menu.displayName != 'Logout'" class="example-icon">
+        <a class="menu-item" [routerLink]="[menu.url]" 
+            routerLinkActive="active-menu-item"
+        >
+            {{menu.displayName}} 
+        </a>
+    </span>
+    <span *ngIf="menu.isVisible && menu.displayName == 'Logout'" class="example-icon">
+        <a class="menu-item" (click)="logout()"
+        >
+            {{menu.displayName}} 
+        </a>
+    </span>
+</ng-template>
+

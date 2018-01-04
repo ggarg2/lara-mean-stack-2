@@ -1,3 +1,4 @@
+import { AuthService } from '../../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,29 +10,46 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
+  isUserLoggedIn: boolean = this.authService.isAuthenticated();
+
   menuItems: any = [
   {
     displayName: 'Home',
-    url: '/home'
+    url: '/home',
+    isVisible: true      
   },{
     displayName: 'Dashboard',
-    url: '/dashboard'
+    url: '/dashboard',
+    isVisible: this.isUserLoggedIn,
+    isAuthenticationNeeded: true
   },
   {
     displayName: 'Contact us',
-    url: '/contact-us'
+    url: '/contact-us',
+    isVisible: true
   },
   {
     displayName: 'Sign-in',
-    url: '/login'
+    url: '/login',
+    isVisible: !this.isUserLoggedIn,
+    isAuthenticationNeeded: false   
   },
   {
     displayName: 'Sign-up',
-    url: '/signup'
+    url: '/signup',
+    isVisible: !this.isUserLoggedIn,
+    isAuthenticationNeeded: false    
+  },
+  {
+    displayName: 'Logout',
+    url: '',
+    isVisible: this.isUserLoggedIn,
+    isAuthenticationNeeded: true    
   },
   {
     displayName: 'Policy',
-    url: '/policy'
+    url: '/policy',
+    isVisible: true    
   }]
 
   logoData: any = {
@@ -43,7 +61,30 @@ export class HeaderComponent implements OnInit {
     class: 'header-class'
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+
+    this.authService.userLoggedInEventEmitter.subscribe(
+      data=>{
+        console.log("User is loggedin successfully")
+        this.isUserLoggedIn = data;
+        if(data == true){
+          for(let i =0; i< this.menuItems.length; i++)  {
+            if(this.menuItems[i].isAuthenticationNeeded != undefined)
+            this.menuItems[i].isVisible = this.menuItems[i].isAuthenticationNeeded;
+          }
+        }else{
+          for(let i =0; i< this.menuItems.length; i++)  {
+            if(this.menuItems[i].isAuthenticationNeeded != undefined)
+            this.menuItems[i].isVisible = !this.menuItems[i].isAuthenticationNeeded;
+          }
+        }
+      },
+      error =>{
+        console.log("user logged in event is failed")        
+      }
+    )
+
+   }
 
   ngOnInit() {
   }

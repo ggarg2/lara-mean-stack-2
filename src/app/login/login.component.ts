@@ -19,24 +19,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(){
-    let _self = this;
-
-    this.authService.login(this.emailId, this.password).then(function(response){
-      console.log(response)
-      alert("user is logged in successfully") 
-      _self.route.navigateByUrl("/dashboard/course")
-    }).catch(function(error){
-       // Handle Errors here.
-       let errorCode = error.code;
-       let errorMessage = error.message;
-       console.log("error code is "+ errorCode)
-       console.log("error message is "+ errorMessage)
-       alert("error: "+errorMessage)
-    })
-  }
-
-
   loginUserUsingObservable(){
     this.authService.loginObservable(this.emailId, this.password).subscribe(
       data => {
@@ -47,23 +29,18 @@ export class LoginComponent implements OnInit {
         console.log("user is ")
         console.log(user)
 
-        let _self = this;
-
-        user.getIdToken().then(function(response: string){
-          console.log(response)
-          console.log(_self)
-          console.log(_self.authService)
-          _self.authService.token = response;
-        })
-
         fromPromise(user.getIdToken()).subscribe(
           data => {
             console.log(this)
-            console.log(this.authService)
             this.authService.token = data;
+            this.authService.userLoggedInEventEmitter.emit(true)
+            localStorage.setItem("uid", data)
+            console.log(this.authService)
+            
           },
           error => {
             console.log("error while calling getIdToken")
+            this.authService.userLoggedInEventEmitter.emit(false)
           }
         )
 

@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth-guard.service';
 import { ResourceNotFoundComponent } from './resource-not-found/resource-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -18,10 +19,13 @@ import { AuthService } from './auth.service';
 
 const routes: Routes = [
   { path:'', redirectTo: 'home', pathMatch: 'full'},
-  { path:'home/:cityId/locality/:localityId', loadChildren: 'app/home/home.module#HomeModule'},
+  { path:'home', loadChildren: 'app/home/home.module#HomeModule'},
   { path:'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'},
-  { path:'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'},
-  { path:'login', loadChildren: 'app/login/login.module#LoginModule'},
+  
+  { path:'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', 
+    canActivate: [AuthGuardService]},
+  
+    { path:'login', loadChildren: 'app/login/login.module#LoginModule'},
   { path:'signup', loadChildren: 'app/signup/signup.module#SignupModule'},
   { path: '**', component: PageNotFoundComponent}
 ]
@@ -38,7 +42,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
