@@ -13,8 +13,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CourseModule } from './dashboard/course/course.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { AuthInterceptor } from './auth-interceptor.service';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path:'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule'},
   
   { path:'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', 
-    canActivate: [AuthGuardService]},
+    //canActivate: [AuthGuardService]
+  },
   
     { path:'login', loadChildren: 'app/login/login.module#LoginModule'},
   { path:'signup', loadChildren: 'app/signup/signup.module#SignupModule'},
@@ -42,7 +44,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

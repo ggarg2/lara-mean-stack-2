@@ -1,3 +1,4 @@
+import { AuthService } from '../../auth.service';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
@@ -14,7 +15,7 @@ export class CourseService {
   viewCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
   editCourseEvent: EventEmitter<CourseModel> = new EventEmitter();
 
-  constructor(private loggingService: LoggingService, private httpClient: HttpClient) {
+  constructor(private loggingService: LoggingService, private httpClient: HttpClient, private authService: AuthService) {
     
    }
 
