@@ -1,43 +1,37 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Observer, Subscription } from 'rxjs/Rx';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
-  constructor(private activatedRoutes: ActivatedRoute) { }
+  signupForm: FormGroup;
+
+  constructor() {
+
+    this.signupForm = new FormGroup({
+
+      'userDataForm': new FormGroup({
+        'username' : new FormControl(null, [Validators.required]),
+        'email': new FormControl("a@a.com", [Validators.required, 
+          Validators.email])
+      }),
+       'address': new FormControl(null)
+    })
+
+   }
+
+   submitForm(){
+     console.log("Test")
+     console.log(this.signupForm)
+   }
 
   ngOnInit() {
 
-    let cityId = this.activatedRoutes.snapshot.params['cityId'];
-    console.log("city id is "+cityId);
-    let localityId = this.activatedRoutes.snapshot.params['localityId'];
-    console.log("locality id is "+localityId)
-
-    let name = this.activatedRoutes.snapshot.queryParams['name'];
-    console.log("name is "+name);
-
-    this.activatedRoutes.params.subscribe(
-      (params: Params)=>{
-        console.log(params)
-      }
-    )
-
-    this.activatedRoutes.queryParams.subscribe(
-      (params: Params)=>{
-        console.log(params)
-      }
-    )
-
   }
-
-
-    public ngOnDestroy(): void {
-       console.log("destroy the component");
-      
-    }
 }

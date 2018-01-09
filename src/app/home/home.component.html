@@ -1,15 +1,23 @@
-<p>
-  home works!
-</p>
+<div class="height-class">
+  <form (ngSubmit)="submitForm()" [formGroup]="signupForm">
+    <div formGroupName="userDataForm">
+      <mat-form-field>
+        <input matInput placeholder="User Name" formControlName="username">
+        <mat-error *ngIf="signupForm.get('userDataForm').get('username').invalid">Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="signupForm.get('userDataForm').get('email').errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="!signupForm.get('userDataForm').get('email').errors?.required && signupForm.get('userDataForm').get('email').errors?.email">Email is not valid</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+        <textarea matInput placeholder="Address" formControlName="address"></textarea>
+        <mat-error *ngIf="signupForm.get('address').invalid">Address is required</mat-error>
+      </mat-form-field>
 
-
-<!-- <a class="menu-item" [routerLink]="['home', 'Bangalore', 'locality', 'BTM']" 
-[queryParams]="{name: 'Test100'}"
-routerLinkActive="active-menu-item"
->
-Test URL
-</a> -->
-
-<a routerLink="/home/abc/locality/adfg">
-Test URL
-</a>
+    <button [disabled]="signupForm.invalid" type="submit" mat-raised-button color="primary">
+      Submit
+    </button>
+  </form>
+</div>
