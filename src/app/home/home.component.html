@@ -14,10 +14,22 @@
     <mat-form-field>
         <textarea matInput placeholder="Address" formControlName="address"></textarea>
         <mat-error *ngIf="signupForm.get('address').invalid">Address is required</mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-    <button [disabled]="signupForm.invalid" type="submit" mat-raised-button color="primary">
+    <div formArrayName="fields">
+        <h3>Your Fields</h3>
+        <button mat-raised-button (click)="addField()">Add Field</button>
+
+        <div *ngFor="let control of signupForm.get('fields').controls; let i = index">
+          <input type="text" formControlName="{{i}}">
+        </div>
+    </div>
+
+    <button type="submit" mat-raised-button color="primary">
       Submit
+    </button>
+    <button mat-raised-button color="warn" (click)="reset()">
+      Reset
     </button>
   </form>
 </div>
